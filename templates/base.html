@@ -76,20 +76,40 @@
   {% endif %}
   <aside>
     <div>
-      <a href="{{ SITEURL }}">
-        {% if SITELOGO %}
-        <img src="{{ SITELOGO }}" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
-        {% else %}
-        <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
-        {% endif %}
-      </a>
+      {% if SITELOGO %}
+      <img src="{{ SITELOGO }}" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
+      {% else %}
+      <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
+      {% endif %}
       <h1><a href="{{ SITEURL }}">{{ SITETITLE }}</a></h1>
 
       {% if SITESUBTITLE %}<p>{{ SITESUBTITLE }}</p>{% endif %}
 
-      {% if pages or LINKS %}
+      {% if pages or LINKS or MAIN_MENU_AT_SIDE %}
       <nav>
         <ul class="list">
+          {% if MAIN_MENU_AT_SIDE %}
+          <li>
+            <a href="{{ SITEURL }}">{{ _('Articles') }}</a>
+
+            {% if MENUITEMS %}
+            <ul>
+              {% for title, link in MENUITEMS %}
+              <li><a href="{{ link }}">{{ title }}</a></li>
+              {% endfor %}
+
+              {% if FEED_ALL_ATOM %}
+              <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">{{ _('Atom') }}</a></li>
+              {% endif %}
+
+              {% if FEED_ALL_RSS %}
+              <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">{{ _('RSS') }}</a></li>
+              {% endif %}
+            </ul>
+            {% endif %}
+          </li>
+          {% endif %}
+        
           {% if not PAGES_SORT_ATTRIBUTE -%}
               {% set PAGES_SORT_ATTRIBUTE = 'title' %}
           {%- endif %}

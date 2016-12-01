@@ -104,12 +104,30 @@ aside {
   }
 
   nav {
+    padding-left: 1em;
+    border: 1px solid #444444;
+    border-width: 1px 0;
+    text-align: center;
+  
     ul {
+      display: inline-block;
+      text-align: left;
+      
       li {
-        display: inline;
         line-height: 1.6em;
         font-size: 1.28em;
-        text-transform: lowercase;
+        
+        ul {
+          display: block;
+          padding: 0 1em;
+          list-style-type: disc;
+        
+          li {
+            display: list-item;
+            line-height: 1.2em;
+            font-size: .8em;
+          }
+        }
       }
     }
   }
@@ -325,6 +343,9 @@ ul.list {
 
   li {
     padding: 4px;
+    ul li {
+      padding: 0;
+    }
   }
 }
 
@@ -360,6 +381,15 @@ ul.social {
     background-color: @google-bg-color;
   }
 
+  a.sc-key {
+    background-color: @key-bg-color;
+  }
+
+  a.sc-keybase {
+    background: @keybase-bg-color url('../img/icon-keybase.png') no-repeat;
+    background-size: 100%;
+  }
+
   a.sc-pinterest {
     background-color: @pinterest-bg-color;
   }
@@ -374,6 +404,12 @@ ul.social {
 
   a.sc-stack-overflow {
     background-color: @stack-overflow-bg-color;
+  }
+
+  a.sc-threema {
+    border: 1px solid @threema-bg-color;
+    background: @threema-bg-color url('../img/icon-threema.png') no-repeat;
+    background-size: 100%;
   }
 
   a.sc-twitter {
@@ -431,7 +467,7 @@ ul.social {
     div {
       padding: 36px 18px;
 
-      nav {
+      nav {      
         ul {
           li {
             padding: 0 !important;
